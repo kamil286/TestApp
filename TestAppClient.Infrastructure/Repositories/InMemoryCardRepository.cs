@@ -15,7 +15,7 @@ namespace TestAppClient.Infrastructure.Repositories
 			=> await Task.FromResult(_cards.SingleOrDefault(x => x.Id == id));
 
 		public async Task<IEnumerable<Card>> GetAllAsync()
-			=> await Task.FromResult(Card);
+            => await Task.FromResult(_cards);
 
 		public async Task AddAsync(Card card)
 		{

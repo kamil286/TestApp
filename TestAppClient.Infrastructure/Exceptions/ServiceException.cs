@@ -3,7 +3,7 @@ using TestAppClient.Core.Domian;
 
 namespace TestAppClient.Infrastructure.Exceptions
 {
-    class ServiceException : CardException
+    public class ServiceException : CardException
     {
         public ServiceException()
         {

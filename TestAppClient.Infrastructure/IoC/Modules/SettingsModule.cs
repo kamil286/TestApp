@@ -1,5 +1,7 @@
 ﻿using Autofac;
 using AutoMapper.Configuration;
+using TestAppClient.Infrastructure.Extensions;
+using TestAppClient.Infrastructure.Settings;
 
 namespace TestAppClient.Infrastructure.IoC.Modules
 {

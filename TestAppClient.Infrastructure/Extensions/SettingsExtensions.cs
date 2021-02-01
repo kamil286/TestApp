@@ -1,4 +1,6 @@
-﻿namespace TestAppClient.Infrastructure.Extensions
+﻿using AutoMapper.Configuration;
+
+namespace TestAppClient.Infrastructure.Extensions
 {
     public static class SettingsExtensions
     {
@@ -6,8 +8,7 @@
         {
             var section = typeof(T).Name.Replace("Settings", string.Empty);
             var configurationValue = new T();
-            configuration.GetSection(section).Bind(configurationValue);
-
+            //configuration.GetSection(section).Bind(configurationValue);
             return configurationValue;
         }
     }

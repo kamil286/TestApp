@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using System.Linq;
 using System.Reflection;
+using TestAppClient.Infrastructure.Services;
 
 namespace TestAppClient.Infrastructure.IoC.Modules
 {
