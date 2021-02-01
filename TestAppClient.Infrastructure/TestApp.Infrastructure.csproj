@@ -85,14 +85,28 @@
     <Compile Include="Handlers\CreateCardHandler.cs" />
     <Compile Include="Handlers\DeleteCardHandler.cs" />
     <Compile Include="Handlers\UpdateCardHandler.cs" />
+    <Compile Include="IoC\ContainerModule.cs" />
+    <Compile Include="IoC\Modules\CommandModule.cs" />
+    <Compile Include="IoC\Modules\RepositoryModule.cs" />
+    <Compile Include="IoC\Modules\ServiceModule.cs" />
+    <Compile Include="IoC\Modules\SettingsModule.cs" />
+    <Compile Include="Mappers\AuutomapperConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\InMemoryCardRepository.cs" />
+    <Compile Include="Services\CardService.cs" />
+    <Compile Include="Services\DataInitializer.cs" />
+    <Compile Include="Services\Handler.cs" />
+    <Compile Include="Services\HandlerTask.cs" />
+    <Compile Include="Services\HandlerTaskRunner.cs" />
+    <Compile Include="Services\Interfaces\ICardService.cs" />
+    <Compile Include="Services\Interfaces\IHandler.cs" />
+    <Compile Include="Services\Interfaces\IHandlerTask.cs" />
+    <Compile Include="Services\Interfaces\IHandlerTaskRunner.cs" />
+    <Compile Include="Services\Interfaces\IService.cs" />
+    <Compile Include="Settings\GeneralSettings.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="IoC\Modules\" />
-    <Folder Include="Mappers\" />
-    <Folder Include="Repositories\" />
-    <Folder Include="Services\" />
-    <Folder Include="Settings\" />
+    <Content Include=".gitignore" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TestAppClient.Core\TestApp.Core.csproj">
