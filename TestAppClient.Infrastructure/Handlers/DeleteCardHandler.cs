@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using TestAppClient.Infrastructure.Commands;
 using TestAppClient.Infrastructure.Commands.Card;
+using TestAppClient.Infrastructure.Services.Interfaces;
 
 namespace TestAppClient.Infrastructure.Handlers
 {

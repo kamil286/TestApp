@@ -1,30 +1,39 @@
 using Autofac;
-using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.AzureAD.UI;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using System;
 using TestAppClient.Infrastructure.IoC;
+using NLog.Extensions.Logging;
+using Microsoft.Extensions.Configuration;
 
 namespace TestAppClient
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public IConfigurationRoot Configuration { get; }
+        public ILifetimeScope AutofacContainer { get; private set; }
+
+        [System.Obsolete]
+        public Startup(Microsoft.Extensions.Hosting.IHostingEnvironment env)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddEnvironmentVariables();
+            Configuration = builder.Build();
         }
 
-        public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
-        [System.Obsolete]
+        [Obsolete]
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add framework services.
             services.AddControllersWithViews();
             services
                 .AddAuthentication(AzureADDefaults.BearerAuthenticationScheme)
@@ -44,18 +53,24 @@ namespace TestAppClient
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+        }
 
-            //var builder = new ContainerBuilder();
-            //builder.Populate(services);
-            //builder.RegisterModule(new ContainerModule(Configuration));
-            //ApplicationContainer = builder.Build();
-
-            //return new AutofacServiceProvider(ApplicationContainer);
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            // Register your own things directly with Autofac here. Don't
+            // call builder.Populate(), that happens in AutofacServiceProviderFactory
+            // for you.
+            builder.RegisterModule(new ContainerModule(null));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        [Obsolete]
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
+            ILoggerFactory loggerFactory, Microsoft.AspNetCore.Hosting.IApplicationLifetime appLifetime)
         {
+            loggerFactory.AddNLog();
+            //app.AddNLogWeb();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
