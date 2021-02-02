@@ -16,7 +16,7 @@ export const protectedResourceMap: [string, string[]][] = [['https://localhost:4
 const appRoutes: Routes = [
   {
     path: '',
-    component: AppComponent,
+    component: HomeComponent,
     canActivate: [MsalGuard]
   },
   {
