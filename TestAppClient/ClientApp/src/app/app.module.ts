@@ -3,7 +3,11 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { MsalGuard, MsalInterceptor, MsalModule } from '@azure/msal-angular';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
+import { 
+  NavMenuComponent,
+  CardsListComponent,
+  HomeComponent 
+} from './components';
 import { RouterModule, Routes } from '@angular/router';
 
 export const isIE = window.navigator.userAgent.indexOf('MSIE ') > -1 || window.navigator.userAgent.indexOf('Trident/') > -1;
@@ -14,6 +18,11 @@ const appRoutes: Routes = [
     path: '',
     component: AppComponent,
     canActivate: [MsalGuard]
+  },
+  {
+    path: 'cards-list', 
+    component: CardsListComponent,
+    canActivate: [MsalGuard]
   }
 ];
 
@@ -21,6 +30,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     NavMenuComponent,
+    CardsListComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
