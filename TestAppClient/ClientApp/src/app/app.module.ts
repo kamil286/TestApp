@@ -3,10 +3,11 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { MsalGuard, MsalInterceptor, MsalModule } from '@azure/msal-angular';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
+import { 
+  NavMenuComponent,
+  CardsListComponent,
+  HomeComponent 
+} from './components';
 import { RouterModule, Routes } from '@angular/router';
 
 export const isIE = window.navigator.userAgent.indexOf('MSIE ') > -1 || window.navigator.userAgent.indexOf('Trident/') > -1;
@@ -14,14 +15,14 @@ export const protectedResourceMap: [string, string[]][] = [['https://localhost:4
 
 const appRoutes: Routes = [
   {
-    path: 'fetch-data',
-    component: FetchDataComponent,
-    //canActivate: [MsalGuard]
-  },
-  {
     path: '',
     component: HomeComponent,
-    //canActivate: [MsalGuard]
+    canActivate: [MsalGuard]
+  },
+  {
+    path: 'cards-list', 
+    component: CardsListComponent,
+    canActivate: [MsalGuard]
   }
 ];
 
@@ -29,9 +30,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     NavMenuComponent,
-    HomeComponent,
-    CounterComponent,
-    FetchDataComponent
+    CardsListComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
