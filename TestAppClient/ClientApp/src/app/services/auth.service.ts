@@ -82,6 +82,35 @@ export class AuthService {
     user.email = graphUser.mail || graphUser.userPrincipalName;
     user.timeZone = graphUser.mailboxSettings.timeZone;
 
+    // Use default avatar
+    user.avatar = '../../assets/np-profile-photo.png';
+
     return user;
+  }
+
+  async isUserInGroup(user: User): Promise<boolean> {
+    
+    let adminsGroupId = OAuthSettings.adminsGroupId;
+    let graphClient = Client.init({
+      authProvider: async(done) => {
+        let token = await this.getAccessToken()
+          .catch((reason) => {
+            done(reason, null);
+          });
+
+        if (token)
+        {
+          done(null, token);
+        } else {
+          done("Could not get an access token", null);
+        }
+      }
+    });
+    
+    // Get list of users which belongs to administrators group and return they are adms or not
+    let res = await graphClient.api('/groups/' + adminsGroupId + '/members')
+      .get();
+      
+    return res.includes(u => u.mail === user.email);
   }
 }
