@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp.Core", "TestAppClie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp.Infrastructure", "TestAppClient.Infrastructure\TestApp.Infrastructure.csproj", "{97229A39-9159-49E9-9EC0-62DAE5E6708A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp.Tests", "TestApp.Tests\TestApp.Tests.csproj", "{33956FCE-30AC-4593-B552-4F34F5AACD42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestApp.Tests", "TestApp.Tests\TestApp.Tests.csproj", "{33956FCE-30AC-4593-B552-4F34F5AACD42}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

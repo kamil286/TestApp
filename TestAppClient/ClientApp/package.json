@@ -22,6 +22,8 @@
     "@angular/platform-server": "8.2.12",
     "@angular/router": "8.2.12",
     "@azure/msal-angular": "^1.1.2",
+    "@microsoft/microsoft-graph-client": "^2.1.0",
+    "@microsoft/microsoft-graph-types": "^1.24.0",
     "@nguniversal/module-map-ngfactory-loader": "8.1.1",
     "aspnet-prerendering": "^3.0.1",
     "bootstrap": "^4.3.1",
